@@ -21,7 +21,7 @@ namespace Providers
             try
             {
                 WebClient wc = new WebClient();
-                Uri uriadd = new Uri(@"ftp://hn92.mylittledatacenter.com/public_html/files/" + RequirementsController.PersianYear() + "/" + name);
+                Uri uriadd = new Uri(@"url" + RequirementsController.PersianYear() + "/" + name);
                 wc.Credentials = new NetworkCredential(username, password);
                 wc.UploadFile(uriadd, HostingEnvironment.MapPath(path + name));
 
