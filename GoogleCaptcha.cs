@@ -17,8 +17,8 @@ namespace Providers
      * */
     public static class SiteSettings
     {
-        public const string GoogleRecaptchaSecretKey = "6LcfK3QUAAAAAABTk33CCatFbkqvNIeaaadG2SzB"; //6LfimroUAAAAAPo9UPc2kVSUS5RG_ILTpxbWYXj_
-        public const string GoogleRecaptchaSiteKey = "6LcfK3QUAAAAAEhvomSJ3A36S5tIlMISXM-0O3OI"; //6LfimroUAAAAAFsn4SSjKL1nRK7LBP1leTRoTb1d
+        public const string GoogleRecaptchaSecretKey = "6LcfK3QUAAAAAABTk33CCatFbkqvNIeaaadG2SzB";
+        public const string GoogleRecaptchaSiteKey = "6LcfK3QUAAAAAEhvomSJ3A36S5tIlMISXM-0O3OI";
     }
 
 
@@ -33,7 +33,6 @@ namespace Providers
                 Attributes =
             {
                 new KeyValuePair<string, string>("class", "g-recaptcha"),
-                new KeyValuePair<string, string>("style", "transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"),
                 new KeyValuePair<string, string>("data-sitekey", publicSiteKey)
             }
             };
