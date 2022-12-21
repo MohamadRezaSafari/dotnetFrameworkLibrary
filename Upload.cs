@@ -13,7 +13,7 @@ using System.Net;
 
 namespace Providers
 {
-    public class Upload : System.Web.Mvc. Controller
+    public class Upload
     {
         private readonly string[] ImageExtensions = new string[] { ".jpeg", ".jpg", ".png", ".gif" };
         private readonly string[] DocExtensions = new string[] { ".pdf", ".doc", ".docx", ".pptx", ".ppt", ".zip" };
@@ -35,16 +35,8 @@ namespace Providers
                 try
                 {
                     ImageName = folder + "_" + Rand.Mix() + Path.GetExtension(file.FileName);
-                    
-                    //string path = Path.Combine( 
-                    //    Server.MapPath(dir),
-                    //    //HostingEnvironment.MapPath(dir), 
-                    //    Path.GetFileName(ImageName));
-                    //file.SaveAs(path);
-
-                    var FilePath = dir + Path.GetFileName(ImageName);
-                    file.SaveAs(Server.MapPath(FilePath));
-
+                    string path = Path.Combine(HostingEnvironment.MapPath(dir), Path.GetFileName(ImageName));
+                    file.SaveAs(path);
                     return ImageName;
                 }
                 catch (Exception error)
@@ -205,7 +197,7 @@ namespace Providers
 
             string path = HostingEnvironment.MapPath(Dir + name);
 
-            using (Stream file = System.IO.File.OpenWrite(path))
+            using (Stream file = File.OpenWrite(path))
             {
                 await input.CopyToAsync(file);
                 file.Close();
@@ -286,7 +278,7 @@ namespace Providers
                 
             string path = HostingEnvironment.MapPath(dir + name);
 
-            using (Stream file = System.IO.File.OpenWrite(path))
+            using (Stream file = File.OpenWrite(path))
             {
                 await input.CopyToAsync(file);
                 file.Close();
@@ -300,7 +292,7 @@ namespace Providers
         // Test
         public async Task<Array> ImageToByteArray()
         {
-            byte[] arr = System.IO.File.ReadAllBytes(HostingEnvironment.MapPath("~/Upload/101.jpeg"));
+            byte[] arr = File.ReadAllBytes(HostingEnvironment.MapPath("~/Upload/101.jpeg"));
             return await Task.FromResult(arr);
         }
 
@@ -373,9 +365,9 @@ namespace Providers
             {
                 var fullPath = HostingEnvironment.MapPath(dir + name);
 
-                if (System.IO.File.Exists(fullPath))
+                if (File.Exists(fullPath))
                 {
-                    System.IO.File.Delete(fullPath);
+                    File.Delete(fullPath);
                 }
             }
             catch (Exception error)
@@ -392,9 +384,9 @@ namespace Providers
             {
                 var _fullPath = HostingEnvironment.MapPath(fullPath);
 
-                if (System.IO.File.Exists(_fullPath))
+                if (File.Exists(_fullPath))
                 {
-                    System.IO.File.Delete(_fullPath);
+                    File.Delete(_fullPath);
                 }
             }
             catch (Exception error)
